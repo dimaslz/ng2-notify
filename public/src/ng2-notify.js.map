@@ -1,0 +1,1 @@
+{"version":3,"sources":["src/ng2-notify.ts"],"names":[],"mappings":"AACmE","file":"src/ng2-notify.js","sourcesContent":["export {Ng2Notify} from '../app/src/directives/ng2-notify.ts';\nexport {Ng2NotifyService} from '../app/src/services/ng2-notify.ts';"],"sourceRoot":"/source/"}
