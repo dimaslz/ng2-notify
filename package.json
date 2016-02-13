@@ -1,8 +1,8 @@
 {
   "name": "ng2-notify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Notification component for angular2",
-  "main": "index.js",
+  "main": "./dist/ng2-notify.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "bin/server"
