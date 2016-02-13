@@ -1,7 +1,7 @@
 {
-  "name": "todo",
+  "name": "ng2-notify",
   "version": "1.0.0",
-  "description": "First node api",
+  "description": "Notification component for angular2",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
