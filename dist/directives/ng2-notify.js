@@ -16,6 +16,7 @@ var Ng2Notify = (function () {
         var _this = this;
         this.notification = notification;
         this.notifications = [];
+        console.log('AAAAA');
         this.notification.notify.subscribe(function (uploaded) {
             _this.setNotify(uploaded);
         });
