@@ -28,14 +28,15 @@ var Ng2Notify = (function () {
             notification.notify = !notification.notify;
             setTimeout(function () {
                 _this.notifications.shift();
-            }, 200);
-        }, 2000);
+            }, 500);
+        }, this.duration);
     };
     Ng2Notify.prototype.setNotify = function (obj) {
         obj.notify = obj.show;
         obj.type = obj.type;
         obj.message = obj.message;
         this.position = obj.position;
+        this.duration = obj.duration;
         this.notifications.push(obj);
         this.createTimeout(obj);
     };

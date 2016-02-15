@@ -15,7 +15,7 @@ var App = (function () {
         this.notification = notification;
         this.typeList = '';
         this.position = 'right-bottom';
-        this.notification.config(this.position);
+        this.notification.config(this.position, 5000);
     }
     ;
     App.prototype.notifyDefault = function (message, corner) {
@@ -41,10 +41,9 @@ var App = (function () {
             directives: [ng2_notify_1.Ng2Notify],
             providers: [ng2_notify_1.Ng2NotifyService]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof ng2_notify_1.Ng2NotifyService !== 'undefined' && ng2_notify_1.Ng2NotifyService) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [ng2_notify_1.Ng2NotifyService])
     ], App);
     return App;
-    var _a;
 })();
 browser_1.bootstrap(App, []).catch(console.error);
 

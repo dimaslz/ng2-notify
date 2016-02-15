@@ -37,3 +37,4 @@ var Ng2NotifyService = (function () {
     return Ng2NotifyService;
 })();
 exports.Ng2NotifyService = Ng2NotifyService;
+//# sourceMappingURL=ng2-notify.js.map

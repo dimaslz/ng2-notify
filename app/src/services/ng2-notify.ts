@@ -5,19 +5,21 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class Ng2NotifyService {
-    notify: Observable<Object>;
+    public notify: Observable<Object>;
     private notifyObserver: any;
-    private position:string;
+    private position:string = 'right-bottom';
+    private duration:number = 2000;
     
     constructor() {
-        this.notify = new Observable(observer => this.notifyObserver = observer).share();
+         this.notify = new Observable(observer => this.notifyObserver = observer).share();
     };
     
-    show(type:String, message:String) {
-        this.notifyObserver.next({type: type, message: message, show:true, position:this.position}); 
+    public show(type:string, message:string) {
+        this.notifyObserver.next({type: type, message: message, show:true, position:this.position, duration:this.duration}); 
     }
     
-    config(position:string) {
+    public config(position:string = 'right-bottom', duration:number = 2000) {
         this.position = position;
+        this.duration = duration;
     }
 }

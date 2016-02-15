@@ -16,7 +16,6 @@ var Ng2Notify = (function () {
         var _this = this;
         this.notification = notification;
         this.notifications = [];
-        console.log('AAAAA');
         this.notification.notify.subscribe(function (uploaded) {
             _this.setNotify(uploaded);
         });
@@ -31,7 +30,7 @@ var Ng2Notify = (function () {
             notification.notify = !notification.notify;
             setTimeout(function () {
                 _this.notifications.shift();
-            }, 200);
+            }, 500);
         }, this.duration);
     };
     Ng2Notify.prototype.setNotify = function (obj) {
@@ -53,3 +52,4 @@ var Ng2Notify = (function () {
     return Ng2Notify;
 })();
 exports.Ng2Notify = Ng2Notify;
+//# sourceMappingURL=ng2-notify.js.map
