@@ -5883,11 +5883,11 @@ ng2-notify {
 
 @font-face {
   font-family: AlegreyaSans;
-  src: url("../assets/fonts/alegreya-sans/AlegreyaSans-Regular.otf") format("opentype"); }
+  src: url("assets/fonts/alegreya-sans/AlegreyaSans-Regular.otf") format("opentype"); }
 
 @font-face {
   font-family: AlegreyaSans Light;
-  src: url("../assets/fonts/alegreya-sans/AlegreyaSans-Light.otf") format("opentype"); }
+  src: url("assets/fonts/alegreya-sans/AlegreyaSans-Light.otf") format("opentype"); }
 
 html {
   min-height: 100%; }
