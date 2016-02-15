@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var browser_1 = require("angular2/platform/browser");
 var core_1 = require("angular2/core");
-var ng2_notify_1 = require('../src/ng2-notify');
+var notify_1 = require('../src/notify');
 var App = (function () {
     function App(notification) {
         this.notification = notification;
@@ -38,10 +38,10 @@ var App = (function () {
         core_1.Component({
             selector: 'app',
             templateUrl: './app.tpl.html',
-            directives: [ng2_notify_1.Ng2Notify],
-            providers: [ng2_notify_1.Ng2NotifyService]
+            directives: [notify_1.Ng2Notify],
+            providers: [notify_1.Ng2NotifyService]
         }), 
-        __metadata('design:paramtypes', [ng2_notify_1.Ng2NotifyService])
+        __metadata('design:paramtypes', [notify_1.Ng2NotifyService])
     ], App);
     return App;
 })();

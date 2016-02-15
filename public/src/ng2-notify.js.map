@@ -1,1 +1,0 @@
-{"version":3,"sources":["src/ng2-notify.ts"],"names":[],"mappings":"AAAA,2BAAwB,yBAAyB,CAAC;AAA1C,2CAA0C;AAClD,2BAA+B,uBAAuB,CAAC;AAA/C,yDAA+C","file":"src/ng2-notify.js","sourcesContent":["export {Ng2Notify} from './directives/ng2-notify';\nexport {Ng2NotifyService} from './services/ng2-notify';"],"sourceRoot":"/source/"}

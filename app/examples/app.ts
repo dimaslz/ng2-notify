@@ -1,6 +1,6 @@
 import {bootstrap} from "angular2/platform/browser";
 import {Component, View, OnInit} from "angular2/core";
-import {Ng2Notify, Ng2NotifyService} from '../src/ng2-notify';
+import {Ng2Notify, Ng2NotifyService} from '../src/notify';
 
 @Component({
     selector: 'app',
