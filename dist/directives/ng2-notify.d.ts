@@ -1,3 +1,4 @@
+/// <reference path="../../node_modules/angular2/typings/browser.d.ts" />
 import { Ng2NotifyService } from "../services/ng2-notify";
 export declare class Ng2Notify {
     notification: Ng2NotifyService;

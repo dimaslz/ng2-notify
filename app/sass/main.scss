@@ -17,12 +17,12 @@
 
 @font-face {
     font-family: AlegreyaSans;
-    src: url("../../assets/fonts/alegreya-sans/AlegreyaSans-Regular.otf") format("opentype");
+    src: url("../assets/fonts/alegreya-sans/AlegreyaSans-Regular.otf") format("opentype");
 }
 
 @font-face {
     font-family: AlegreyaSans Light;
-    src: url("../../assets/fonts/alegreya-sans/AlegreyaSans-Light.otf") format("opentype");
+    src: url("../assets/fonts/alegreya-sans/AlegreyaSans-Light.otf") format("opentype");
 }
 
 html {
@@ -125,4 +125,13 @@ ul {
             color: white;
         }
     }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    height: 40px;
+    padding: 10px 50px;
+    width: 100%;
+    background: white;
 }

@@ -91,13 +91,7 @@ gulp.task('compile-ts', function() {
   ]);
 });
 
-gulp.task('github-page', function() {
-    gulp.src(['app/examples/index.html'])
-    .pipe(
-        replace("<base href=\"/\">", "<base href=\"/ng2-notify/\">")
-    )
-    .pipe(gulp.dest('public/index.html'));
-    
+gulp.task('github-page', function() {    
   return gulp.src('./public/**/*')
     .pipe(ghPages());
 });
