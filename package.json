@@ -32,12 +32,12 @@
     "path": "^0.12.7",
     "rxjs": "5.0.0-beta.1",
     "systemjs": "0.19.20",
-    "typings": "^0.6.8",
     "zone.js": "^0.5.11"
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.6",
     "browser-sync": "^2.11.1",
+    "typings": "^0.6.8",
     "compass-mixins": "^0.12.7",
     "cors": "^2.7.1",
     "del": "^2.2.0",
