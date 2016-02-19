@@ -1,6 +1,6 @@
 {
   "name": "ng2-notify",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Notification component for angular2",
   "main": "ng2-notify.js",
   "scripts": {
