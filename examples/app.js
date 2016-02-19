@@ -9,39 +9,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var browser_1 = require("angular2/platform/browser");
 var core_1 = require("angular2/core");
-var ng2_notify_1 = require('../src/ng2-notify');
+var notify_1 = require('../src/notify');
 var App = (function () {
     function App(notification) {
         this.notification = notification;
         this.typeList = '';
-        this.position = 'right-bottom';
-        this.notification.config(this.position, 5000);
+        this.corner = 'right-top';
+        this.notification.config({
+            corner: this.corner,
+            delay: 5000
+        });
     }
     ;
-    App.prototype.notifyDefault = function (message, corner) {
-        this.notification.show('', 'test message');
+    App.prototype.notifyDefault = function () {
+        this.notification.show('default', {
+            message: 'Default notification.'
+        });
     };
     App.prototype.notifySuccess = function (message, corner) {
-        this.notification.show('success', 'test message');
+        this.notification.show('success', {
+            message: 'Success notification.'
+        });
     };
     App.prototype.notifyWarning = function (message, corner) {
-        this.notification.show('warning', 'test message');
+        this.notification.show('warning', {
+            message: 'Warning notification.'
+        });
     };
     App.prototype.notifyError = function (message, corner) {
-        this.notification.show('error', 'test message');
+        this.notification.show('error', {
+            message: 'Error notification.'
+        });
     };
-    App.prototype.setPosition = function (position) {
-        this.position = position;
-        this.notification.config(position);
+    App.prototype.setPosition = function (corner) {
+        this.corner = corner;
+        this.notification.config({
+            corner: corner,
+            delay: 5000
+        });
     };
     App = __decorate([
         core_1.Component({
             selector: 'app',
             templateUrl: './app.tpl.html',
-            directives: [ng2_notify_1.Ng2Notify],
-            providers: [ng2_notify_1.Ng2NotifyService]
+            directives: [notify_1.Ng2Notify],
+            providers: [notify_1.Ng2NotifyService]
         }), 
-        __metadata('design:paramtypes', [ng2_notify_1.Ng2NotifyService])
+        __metadata('design:paramtypes', [notify_1.Ng2NotifyService])
     ], App);
     return App;
 })();
