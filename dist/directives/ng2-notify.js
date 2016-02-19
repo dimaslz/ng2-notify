@@ -31,21 +31,19 @@ var Ng2Notify = (function () {
             setTimeout(function () {
                 _this.notifications.shift();
             }, 500);
-        }, this.duration);
+        }, notification.delay);
     };
     Ng2Notify.prototype.setNotify = function (obj) {
-        obj.notify = obj.show;
-        obj.type = obj.type;
+        obj.notify = true;
         obj.message = obj.message;
-        this.position = obj.position;
-        this.duration = obj.duration;
+        this.corner = obj.corner;
         this.notifications.push(obj);
         this.createTimeout(obj);
     };
     Ng2Notify = __decorate([
         core_1.Component({
             selector: 'ng2-notify',
-            template: "\n    <ul class=\"{{position}}\">\n        <li *ngFor=\"#notification of notifications\" class=\"{{notification.type || 'default' }}\" [ngClass]=\"{'animate': notification.notify}\" (mouseenter)=\"clear()\" (click)=\"notification.notify = !notification.notify\">\n            {{ notification.message }}\n        </li>\n    </ul>\n    ",
+            template: "\n    <ul class=\"{{corner}}\">\n        <li *ngFor=\"#notification of notifications\" class=\"{{notification.type || 'default' }}\" [ngClass]=\"{'animate': notification.notify}\" (mouseenter)=\"clear()\" (click)=\"notification.notify = !notification.notify\">\n            {{ notification.message }}\n        </li>\n    </ul>\n    ",
         }), 
         __metadata('design:paramtypes', [ng2_notify_1.Ng2NotifyService])
     ], Ng2Notify);
