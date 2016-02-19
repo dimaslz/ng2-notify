@@ -13,24 +13,24 @@ ng2-notify {
         -webkit-margin-start: 0;
         -webkit-padding-start: 0;
         &.right-bottom {
-            right: 0;
-            bottom: 0;
+            right: 2px;
+            bottom: 2px;
         }
         &.right-top {
-            right: 0;
-            top: 0;
+            right: 2px;
+            top: 2px;
         }
         &.left-top {
-            top: 0;
-            left: 0;
+            top: 2px;
+            left: 2px;
         }
         &.left-bottom {
-            bottom: 0;
-            left: 0;
+            bottom: 2px;
+            left: 2px;
         } 
         
         li {
-            @include border-radius(3px 0 0 3px);
+            @include border-radius(3px);
             margin: 2px 0;
             padding: 10px;
             text-align: left;
@@ -50,8 +50,6 @@ ng2-notify {
                     transition-timing-function: cubic-bezier(0.465, 0.000, 0.545, 1.000); /* custom */
             &.animate {
                 @include opacity(1);
-                // position: relative;
-                // right: 0px;
             }
             &.default {
                 background: #eee;

@@ -14,31 +14,46 @@ class App {
     public componentTodos;
     socket: any;
     messages: Array<String>;
-    private position:string = 'right-bottom';
+    private corner:string = 'right-top';
     
     constructor(public notification: Ng2NotifyService) {
-        this.notification.config(this.position, 5000);
+        // Custom default config
+        this.notification.config({
+            corner: this.corner,
+            delay: 5000
+        });
     };
-    
-    private notifyDefault(message, corner) {
-        this.notification.show('', 'test message');
+        
+    private notifyDefault(): void {
+        this.notification.show('default', {
+            message: 'Default notification.'
+        });
     }
     
     private notifySuccess(message, corner) {
-        this.notification.show('success', 'test message');
+        this.notification.show('success', {
+            message: 'Success notification.'
+        });
     }
     
     private notifyWarning(message, corner) {
-        this.notification.show('warning', 'test message');
+        this.notification.show('warning', {
+            message: 'Warning notification.'
+        });
     }
     
     private notifyError(message, corner) {
-        this.notification.show('error', 'test message');
+        this.notification.show('error', {
+            message: 'Error notification.'
+        });
     }
     
-    private setPosition(position:string) {
-        this.position = position;
-        this.notification.config(position);
+    private setPosition(corner:string) {
+        this.corner = corner;
+        this.notification.config({
+            corner: corner,
+            delay: 5000
+        });
     }
     
 }

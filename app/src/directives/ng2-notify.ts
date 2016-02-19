@@ -6,7 +6,7 @@ import {Ng2NotifyService} from "../services/ng2-notify";
 @Component({
     selector: 'ng2-notify',
     template: `
-    <ul class="{{position}}">
+    <ul class="{{corner}}">
         <li *ngFor="#notification of notifications" class="{{notification.type || 'default' }}" [ngClass]="{'animate': notification.notify}" (mouseenter)="clear()" (click)="notification.notify = !notification.notify">
             {{ notification.message }}
         </li>
@@ -16,8 +16,7 @@ import {Ng2NotifyService} from "../services/ng2-notify";
 
 export class Ng2Notify {
     private notifications = [];
-    public position;
-    public duration;
+    public corner;
     
     constructor (public notification: Ng2NotifyService) {
         this.notification.notify.subscribe(uploaded => {
@@ -35,15 +34,14 @@ export class Ng2Notify {
             setTimeout(() => {
                 this.notifications.shift();
             }, 500);
-        }, this.duration);
+        }, notification.delay);
     }
     
     private setNotify(obj) {
-        obj.notify = obj.show;
-        obj.type = obj.type;
+        obj.notify = true;
         obj.message = obj.message;
-        this.position = obj.position;
-        this.duration = obj.duration;
+
+        this.corner = obj.corner;
         
         this.notifications.push(obj);
         this.createTimeout(obj);

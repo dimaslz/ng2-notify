@@ -14,19 +14,30 @@ require('rxjs/add/operator/map');
 var Ng2NotifyService = (function () {
     function Ng2NotifyService() {
         var _this = this;
-        this.position = 'right-bottom';
-        this.duration = 2000;
+        this.corner = 'right-bottom';
+        this.delay = 2000;
+        this.positionTypes = ['right-bottom', 'left-bottom', 'left-top', 'right-top'];
         this.notify = new Observable_1.Observable(function (observer) { return _this.notifyObserver = observer; }).share();
     }
     ;
-    Ng2NotifyService.prototype.show = function (type, message) {
-        this.notifyObserver.next({ type: type, message: message, show: true, position: this.position, duration: this.duration });
+    Ng2NotifyService.prototype.show = function (type, config) {
+        var object = {
+            type: type,
+            message: config.message,
+            corner: config.corner ? config.corner : this.corner,
+            delay: config.delay ? config.delay : this.delay
+        };
+        this.notifyObserver.next(object);
     };
-    Ng2NotifyService.prototype.config = function (position, duration) {
-        if (position === void 0) { position = 'right-bottom'; }
-        if (duration === void 0) { duration = 2000; }
-        this.position = position;
-        this.duration = duration;
+    Ng2NotifyService.prototype.config = function (config) {
+        if (this.positionTypes.indexOf(config.corner) === -1) {
+            console.info('warning: ', "The corner \"" + config.corner + "\" do not exist");
+        }
+        if (!Number(config.delay)) {
+            console.info('warning: ', "The duration \"" + config.delay + "\" must be a number");
+        }
+        this.corner = config.corner || 'right-bottom';
+        this.delay = config.delay || this.delay;
     };
     Ng2NotifyService = __decorate([
         core_1.Injectable(), 
