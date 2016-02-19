@@ -12,13 +12,12 @@ dependencies: `npm install`
 watch and enjoi: `gulp watch`
 
 ###Use in your project
-!Pending tu upload to NPM
-At moment, you can use: `npm install --save https://github.com/dimaslz/ng2-notify.git`
+`npm install --save ng2-notify`
 
 in your file:
 
 ```javascript
-import {Ng2Notify, Ng2NotifyService} from '../src/ng2-notify';
+import {Ng2Notify, Ng2NotifyService} from 'ng2-notify/notify';
 [...]
 @Component {
 	directives: [Ng2Notify],
@@ -27,17 +26,20 @@ import {Ng2Notify, Ng2NotifyService} from '../src/ng2-notify';
 export class YourClass {
 	constructor(private notifyService) {
 		// optional
-		this.notifyService.config(NOTIFICATION_POSITION, DELAY);
+		this.notifyService.config({
+            corner: 'right-bottom', 
+            delay: 5000 // milisecons
+        });
 	}
 	
 	private myClickExample(message:string) {
-	  this.notifyService.show(NOTIFICATION_TYPE, {
+	  this.notifyService.show('default', {
 	  	message: 'Type your message here!'
 	  });
 	}
 }
 ```
-###Notification positions
+###Notification corners
 * left-top
 * right-top
 * right-bottom
@@ -45,7 +47,7 @@ export class YourClass {
 
 ###Notification types
 **Default type:**
-'' or default
+'default'
 
 **Success type:**
 'success'
@@ -62,3 +64,32 @@ export class YourClass {
 * Type control
 * More animations
 * Let me know!
+
+###Author
+Dimas López ([dimaslz](http://twitter.com/dimaslz)) · Software developer  
+[http://dimaslz.io](http://dimaslz.io) · [http://dimaslz.com](http://dimaslz.com)
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Dimas López <dimaslopezzurita@gmail.com>
+[@dimaslz](http://twitter.com/dimaslz) [http://dimaslz.io](http://dimaslz.io) [http://dimaslz.com](http://dimaslz.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
