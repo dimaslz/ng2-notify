@@ -6,6 +6,6 @@ export declare class Ng2NotifyService {
     private delay;
     private positionTypes;
     constructor();
-    show(type: string, config: any): void;
+    show(type: string, config: any): boolean;
     config(config: any): void;
 }

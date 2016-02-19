@@ -31,7 +31,9 @@ export class YourClass {
 	}
 	
 	private myClickExample(message:string) {
-	  this.notifyService.show(NOTIFICATION_TYPE, message);
+	  this.notifyService.show(NOTIFICATION_TYPE, {
+	  	message: 'Type your message here!'
+	  });
 	}
 }
 ```

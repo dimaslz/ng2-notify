@@ -17,6 +17,16 @@ export class Ng2NotifyService {
     };
     
     public show(type:string, config) {
+        if(!config.message) {
+            console.error('ng2NotifyError: You must to set a message!!');
+            return false;
+        }
+        
+        if(config.delay && !Number(config.delay)) {
+            console.error('ng2NotifyError: ', `The detaly \"${config.delay}\" must be a number`);
+            return false;
+        }
+        
         var object = {
             type: type,
             message: config.message, 
@@ -29,11 +39,11 @@ export class Ng2NotifyService {
     
     public config(config) {
         if(this.positionTypes.indexOf(config.corner) === -1) {
-            console.info('warning: ', `The corner \"${config.corner}\" do not exist`);
+            console.error('ng2NotifyError: ', `The corner \"${config.corner}\" do not exist`);
         }
         
         if(!Number(config.delay)) {
-            console.info('warning: ', `The duration \"${config.delay}\" must be a number`);
+            console.error('ng2NotifyError: ', `The delay \"${config.delay}\" must be a number`);
         }
         this.corner = config.corner || 'right-bottom';
         this.delay = config.delay || this.delay;
