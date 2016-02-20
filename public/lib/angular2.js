@@ -12817,176 +12817,6 @@ System.register("angular2/src/core/application_ref", ["angular2/src/core/zone/ng
   return module.exports;
 });
 
-System.register("angular2/src/facade/async", ["angular2/src/facade/lang", "angular2/src/facade/promise", "rxjs/Subject", "rxjs/observable/fromPromise", "rxjs/operator/toPromise", "rxjs/Observable", "rxjs/Subject"], true, function(require, exports, module) {
-  var global = System.global,
-      __define = global.define;
-  global.define = undefined;
-  var __extends = (this && this.__extends) || function(d, b) {
-    for (var p in b)
-      if (b.hasOwnProperty(p))
-        d[p] = b[p];
-    function __() {
-      this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-  var lang_1 = require("angular2/src/facade/lang");
-  var promise_1 = require("angular2/src/facade/promise");
-  exports.PromiseWrapper = promise_1.PromiseWrapper;
-  exports.Promise = promise_1.Promise;
-  var Subject_1 = require("rxjs/Subject");
-  var fromPromise_1 = require("rxjs/observable/fromPromise");
-  var toPromise_1 = require("rxjs/operator/toPromise");
-  var Observable_1 = require("rxjs/Observable");
-  exports.Observable = Observable_1.Observable;
-  var Subject_2 = require("rxjs/Subject");
-  exports.Subject = Subject_2.Subject;
-  var TimerWrapper = (function() {
-    function TimerWrapper() {}
-    TimerWrapper.setTimeout = function(fn, millis) {
-      return lang_1.global.setTimeout(fn, millis);
-    };
-    TimerWrapper.clearTimeout = function(id) {
-      lang_1.global.clearTimeout(id);
-    };
-    TimerWrapper.setInterval = function(fn, millis) {
-      return lang_1.global.setInterval(fn, millis);
-    };
-    TimerWrapper.clearInterval = function(id) {
-      lang_1.global.clearInterval(id);
-    };
-    return TimerWrapper;
-  })();
-  exports.TimerWrapper = TimerWrapper;
-  var ObservableWrapper = (function() {
-    function ObservableWrapper() {}
-    ObservableWrapper.subscribe = function(emitter, onNext, onError, onComplete) {
-      if (onComplete === void 0) {
-        onComplete = function() {};
-      }
-      onError = (typeof onError === "function") && onError || lang_1.noop;
-      onComplete = (typeof onComplete === "function") && onComplete || lang_1.noop;
-      return emitter.subscribe({
-        next: onNext,
-        error: onError,
-        complete: onComplete
-      });
-    };
-    ObservableWrapper.isObservable = function(obs) {
-      return !!obs.subscribe;
-    };
-    ObservableWrapper.hasSubscribers = function(obs) {
-      return obs.observers.length > 0;
-    };
-    ObservableWrapper.dispose = function(subscription) {
-      subscription.unsubscribe();
-    };
-    ObservableWrapper.callNext = function(emitter, value) {
-      emitter.next(value);
-    };
-    ObservableWrapper.callEmit = function(emitter, value) {
-      emitter.emit(value);
-    };
-    ObservableWrapper.callError = function(emitter, error) {
-      emitter.error(error);
-    };
-    ObservableWrapper.callComplete = function(emitter) {
-      emitter.complete();
-    };
-    ObservableWrapper.fromPromise = function(promise) {
-      return fromPromise_1.PromiseObservable.create(promise);
-    };
-    ObservableWrapper.toPromise = function(obj) {
-      return toPromise_1.toPromise.call(obj);
-    };
-    return ObservableWrapper;
-  })();
-  exports.ObservableWrapper = ObservableWrapper;
-  var EventEmitter = (function(_super) {
-    __extends(EventEmitter, _super);
-    function EventEmitter(isAsync) {
-      if (isAsync === void 0) {
-        isAsync = true;
-      }
-      _super.call(this);
-      this._isAsync = isAsync;
-    }
-    EventEmitter.prototype.emit = function(value) {
-      _super.prototype.next.call(this, value);
-    };
-    EventEmitter.prototype.next = function(value) {
-      _super.prototype.next.call(this, value);
-    };
-    EventEmitter.prototype.subscribe = function(generatorOrNext, error, complete) {
-      var schedulerFn;
-      var errorFn = function(err) {
-        return null;
-      };
-      var completeFn = function() {
-        return null;
-      };
-      if (generatorOrNext && typeof generatorOrNext === 'object') {
-        schedulerFn = this._isAsync ? function(value) {
-          setTimeout(function() {
-            return generatorOrNext.next(value);
-          });
-        } : function(value) {
-          generatorOrNext.next(value);
-        };
-        if (generatorOrNext.error) {
-          errorFn = this._isAsync ? function(err) {
-            setTimeout(function() {
-              return generatorOrNext.error(err);
-            });
-          } : function(err) {
-            generatorOrNext.error(err);
-          };
-        }
-        if (generatorOrNext.complete) {
-          completeFn = this._isAsync ? function() {
-            setTimeout(function() {
-              return generatorOrNext.complete();
-            });
-          } : function() {
-            generatorOrNext.complete();
-          };
-        }
-      } else {
-        schedulerFn = this._isAsync ? function(value) {
-          setTimeout(function() {
-            return generatorOrNext(value);
-          });
-        } : function(value) {
-          generatorOrNext(value);
-        };
-        if (error) {
-          errorFn = this._isAsync ? function(err) {
-            setTimeout(function() {
-              return error(err);
-            });
-          } : function(err) {
-            error(err);
-          };
-        }
-        if (complete) {
-          completeFn = this._isAsync ? function() {
-            setTimeout(function() {
-              return complete();
-            });
-          } : function() {
-            complete();
-          };
-        }
-      }
-      return _super.prototype.subscribe.call(this, schedulerFn, errorFn, completeFn);
-    };
-    return EventEmitter;
-  })(Subject_1.Subject);
-  exports.EventEmitter = EventEmitter;
-  global.define = __define;
-  return module.exports;
-});
-
 System.register("angular2/src/core/metadata/directives", ["angular2/src/facade/lang", "angular2/src/core/di/metadata", "angular2/src/core/change_detection"], true, function(require, exports, module) {
   var global = System.global,
       __define = global.define;
@@ -13260,6 +13090,296 @@ System.register("angular2/core", ["angular2/src/core/metadata", "angular2/src/co
   return module.exports;
 });
 
+System.register("angular2/src/facade/async", ["angular2/src/facade/lang", "angular2/src/facade/promise", "rxjs/Subject", "rxjs/observable/PromiseObservable", "rxjs/operator/toPromise", "rxjs/Observable", "rxjs/Subject"], true, function(require, exports, module) {
+  var global = System.global,
+      __define = global.define;
+  global.define = undefined;
+  var __extends = (this && this.__extends) || function(d, b) {
+    for (var p in b)
+      if (b.hasOwnProperty(p))
+        d[p] = b[p];
+    function __() {
+      this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+  var lang_1 = require("angular2/src/facade/lang");
+  var promise_1 = require("angular2/src/facade/promise");
+  exports.PromiseWrapper = promise_1.PromiseWrapper;
+  var Subject_1 = require("rxjs/Subject");
+  var PromiseObservable_1 = require("rxjs/observable/PromiseObservable");
+  var toPromise_1 = require("rxjs/operator/toPromise");
+  var Observable_1 = require("rxjs/Observable");
+  exports.Observable = Observable_1.Observable;
+  var Subject_2 = require("rxjs/Subject");
+  exports.Subject = Subject_2.Subject;
+  var TimerWrapper = (function() {
+    function TimerWrapper() {}
+    TimerWrapper.setTimeout = function(fn, millis) {
+      return lang_1.global.setTimeout(fn, millis);
+    };
+    TimerWrapper.clearTimeout = function(id) {
+      lang_1.global.clearTimeout(id);
+    };
+    TimerWrapper.setInterval = function(fn, millis) {
+      return lang_1.global.setInterval(fn, millis);
+    };
+    TimerWrapper.clearInterval = function(id) {
+      lang_1.global.clearInterval(id);
+    };
+    return TimerWrapper;
+  })();
+  exports.TimerWrapper = TimerWrapper;
+  var ObservableWrapper = (function() {
+    function ObservableWrapper() {}
+    ObservableWrapper.subscribe = function(emitter, onNext, onError, onComplete) {
+      if (onComplete === void 0) {
+        onComplete = function() {};
+      }
+      onError = (typeof onError === "function") && onError || lang_1.noop;
+      onComplete = (typeof onComplete === "function") && onComplete || lang_1.noop;
+      return emitter.subscribe({
+        next: onNext,
+        error: onError,
+        complete: onComplete
+      });
+    };
+    ObservableWrapper.isObservable = function(obs) {
+      return !!obs.subscribe;
+    };
+    ObservableWrapper.hasSubscribers = function(obs) {
+      return obs.observers.length > 0;
+    };
+    ObservableWrapper.dispose = function(subscription) {
+      subscription.unsubscribe();
+    };
+    ObservableWrapper.callNext = function(emitter, value) {
+      emitter.next(value);
+    };
+    ObservableWrapper.callEmit = function(emitter, value) {
+      emitter.emit(value);
+    };
+    ObservableWrapper.callError = function(emitter, error) {
+      emitter.error(error);
+    };
+    ObservableWrapper.callComplete = function(emitter) {
+      emitter.complete();
+    };
+    ObservableWrapper.fromPromise = function(promise) {
+      return PromiseObservable_1.PromiseObservable.create(promise);
+    };
+    ObservableWrapper.toPromise = function(obj) {
+      return toPromise_1.toPromise.call(obj);
+    };
+    return ObservableWrapper;
+  })();
+  exports.ObservableWrapper = ObservableWrapper;
+  var EventEmitter = (function(_super) {
+    __extends(EventEmitter, _super);
+    function EventEmitter(isAsync) {
+      if (isAsync === void 0) {
+        isAsync = true;
+      }
+      _super.call(this);
+      this._isAsync = isAsync;
+    }
+    EventEmitter.prototype.emit = function(value) {
+      _super.prototype.next.call(this, value);
+    };
+    EventEmitter.prototype.next = function(value) {
+      _super.prototype.next.call(this, value);
+    };
+    EventEmitter.prototype.subscribe = function(generatorOrNext, error, complete) {
+      var schedulerFn;
+      var errorFn = function(err) {
+        return null;
+      };
+      var completeFn = function() {
+        return null;
+      };
+      if (generatorOrNext && typeof generatorOrNext === 'object') {
+        schedulerFn = this._isAsync ? function(value) {
+          setTimeout(function() {
+            return generatorOrNext.next(value);
+          });
+        } : function(value) {
+          generatorOrNext.next(value);
+        };
+        if (generatorOrNext.error) {
+          errorFn = this._isAsync ? function(err) {
+            setTimeout(function() {
+              return generatorOrNext.error(err);
+            });
+          } : function(err) {
+            generatorOrNext.error(err);
+          };
+        }
+        if (generatorOrNext.complete) {
+          completeFn = this._isAsync ? function() {
+            setTimeout(function() {
+              return generatorOrNext.complete();
+            });
+          } : function() {
+            generatorOrNext.complete();
+          };
+        }
+      } else {
+        schedulerFn = this._isAsync ? function(value) {
+          setTimeout(function() {
+            return generatorOrNext(value);
+          });
+        } : function(value) {
+          generatorOrNext(value);
+        };
+        if (error) {
+          errorFn = this._isAsync ? function(err) {
+            setTimeout(function() {
+              return error(err);
+            });
+          } : function(err) {
+            error(err);
+          };
+        }
+        if (complete) {
+          completeFn = this._isAsync ? function() {
+            setTimeout(function() {
+              return complete();
+            });
+          } : function() {
+            complete();
+          };
+        }
+      }
+      return _super.prototype.subscribe.call(this, schedulerFn, errorFn, completeFn);
+    };
+    return EventEmitter;
+  })(Subject_1.Subject);
+  exports.EventEmitter = EventEmitter;
+  global.define = __define;
+  return module.exports;
+});
+
+System.register("angular2/src/core/metadata", ["angular2/src/core/metadata/di", "angular2/src/core/metadata/directives", "angular2/src/core/metadata/view", "angular2/src/core/metadata/di", "angular2/src/core/metadata/directives", "angular2/src/core/metadata/view", "angular2/src/core/util/decorators"], true, function(require, exports, module) {
+  var global = System.global,
+      __define = global.define;
+  global.define = undefined;
+  var di_1 = require("angular2/src/core/metadata/di");
+  exports.QueryMetadata = di_1.QueryMetadata;
+  exports.ContentChildrenMetadata = di_1.ContentChildrenMetadata;
+  exports.ContentChildMetadata = di_1.ContentChildMetadata;
+  exports.ViewChildrenMetadata = di_1.ViewChildrenMetadata;
+  exports.ViewQueryMetadata = di_1.ViewQueryMetadata;
+  exports.ViewChildMetadata = di_1.ViewChildMetadata;
+  exports.AttributeMetadata = di_1.AttributeMetadata;
+  var directives_1 = require("angular2/src/core/metadata/directives");
+  exports.ComponentMetadata = directives_1.ComponentMetadata;
+  exports.DirectiveMetadata = directives_1.DirectiveMetadata;
+  exports.PipeMetadata = directives_1.PipeMetadata;
+  exports.InputMetadata = directives_1.InputMetadata;
+  exports.OutputMetadata = directives_1.OutputMetadata;
+  exports.HostBindingMetadata = directives_1.HostBindingMetadata;
+  exports.HostListenerMetadata = directives_1.HostListenerMetadata;
+  var view_1 = require("angular2/src/core/metadata/view");
+  exports.ViewMetadata = view_1.ViewMetadata;
+  exports.ViewEncapsulation = view_1.ViewEncapsulation;
+  var di_2 = require("angular2/src/core/metadata/di");
+  var directives_2 = require("angular2/src/core/metadata/directives");
+  var view_2 = require("angular2/src/core/metadata/view");
+  var decorators_1 = require("angular2/src/core/util/decorators");
+  exports.Component = decorators_1.makeDecorator(directives_2.ComponentMetadata, function(fn) {
+    return fn.View = exports.View;
+  });
+  exports.Directive = decorators_1.makeDecorator(directives_2.DirectiveMetadata);
+  exports.View = decorators_1.makeDecorator(view_2.ViewMetadata, function(fn) {
+    return fn.View = exports.View;
+  });
+  exports.Attribute = decorators_1.makeParamDecorator(di_2.AttributeMetadata);
+  exports.Query = decorators_1.makeParamDecorator(di_2.QueryMetadata);
+  exports.ContentChildren = decorators_1.makePropDecorator(di_2.ContentChildrenMetadata);
+  exports.ContentChild = decorators_1.makePropDecorator(di_2.ContentChildMetadata);
+  exports.ViewChildren = decorators_1.makePropDecorator(di_2.ViewChildrenMetadata);
+  exports.ViewChild = decorators_1.makePropDecorator(di_2.ViewChildMetadata);
+  exports.ViewQuery = decorators_1.makeParamDecorator(di_2.ViewQueryMetadata);
+  exports.Pipe = decorators_1.makeDecorator(directives_2.PipeMetadata);
+  exports.Input = decorators_1.makePropDecorator(directives_2.InputMetadata);
+  exports.Output = decorators_1.makePropDecorator(directives_2.OutputMetadata);
+  exports.HostBinding = decorators_1.makePropDecorator(directives_2.HostBindingMetadata);
+  exports.HostListener = decorators_1.makePropDecorator(directives_2.HostListenerMetadata);
+  global.define = __define;
+  return module.exports;
+});
+
+System.register("angular2/src/platform/dom/events/dom_events", ["angular2/src/platform/dom/dom_adapter", "angular2/core", "angular2/src/platform/dom/events/event_manager"], true, function(require, exports, module) {
+  var global = System.global,
+      __define = global.define;
+  global.define = undefined;
+  var __extends = (this && this.__extends) || function(d, b) {
+    for (var p in b)
+      if (b.hasOwnProperty(p))
+        d[p] = b[p];
+    function __() {
+      this.constructor = d;
+    }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+      r = Reflect.decorate(decorators, target, key, desc);
+    else
+      for (var i = decorators.length - 1; i >= 0; i--)
+        if (d = decorators[i])
+          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+  };
+  var __metadata = (this && this.__metadata) || function(k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+      return Reflect.metadata(k, v);
+  };
+  var dom_adapter_1 = require("angular2/src/platform/dom/dom_adapter");
+  var core_1 = require("angular2/core");
+  var event_manager_1 = require("angular2/src/platform/dom/events/event_manager");
+  var DomEventsPlugin = (function(_super) {
+    __extends(DomEventsPlugin, _super);
+    function DomEventsPlugin() {
+      _super.apply(this, arguments);
+    }
+    DomEventsPlugin.prototype.supports = function(eventName) {
+      return true;
+    };
+    DomEventsPlugin.prototype.addEventListener = function(element, eventName, handler) {
+      var zone = this.manager.getZone();
+      var outsideHandler = function(event) {
+        return zone.run(function() {
+          return handler(event);
+        });
+      };
+      return this.manager.getZone().runOutsideAngular(function() {
+        return dom_adapter_1.DOM.onAndCancel(element, eventName, outsideHandler);
+      });
+    };
+    DomEventsPlugin.prototype.addGlobalEventListener = function(target, eventName, handler) {
+      var element = dom_adapter_1.DOM.getGlobalEventTarget(target);
+      var zone = this.manager.getZone();
+      var outsideHandler = function(event) {
+        return zone.run(function() {
+          return handler(event);
+        });
+      };
+      return this.manager.getZone().runOutsideAngular(function() {
+        return dom_adapter_1.DOM.onAndCancel(element, eventName, outsideHandler);
+      });
+    };
+    DomEventsPlugin = __decorate([core_1.Injectable(), __metadata('design:paramtypes', [])], DomEventsPlugin);
+    return DomEventsPlugin;
+  })(event_manager_1.EventManagerPlugin);
+  exports.DomEventsPlugin = DomEventsPlugin;
+  global.define = __define;
+  return module.exports;
+});
+
 System.register("angular2/src/core/zone/ng_zone", ["angular2/src/facade/collection", "angular2/src/facade/lang", "angular2/src/facade/async", "angular2/src/core/profile/profile"], true, function(require, exports, module) {
   var global = System.global,
       __define = global.define;
@@ -13523,127 +13643,6 @@ System.register("angular2/src/core/zone/ng_zone", ["angular2/src/facade/collecti
     return NgZone;
   })();
   exports.NgZone = NgZone;
-  global.define = __define;
-  return module.exports;
-});
-
-System.register("angular2/src/core/metadata", ["angular2/src/core/metadata/di", "angular2/src/core/metadata/directives", "angular2/src/core/metadata/view", "angular2/src/core/metadata/di", "angular2/src/core/metadata/directives", "angular2/src/core/metadata/view", "angular2/src/core/util/decorators"], true, function(require, exports, module) {
-  var global = System.global,
-      __define = global.define;
-  global.define = undefined;
-  var di_1 = require("angular2/src/core/metadata/di");
-  exports.QueryMetadata = di_1.QueryMetadata;
-  exports.ContentChildrenMetadata = di_1.ContentChildrenMetadata;
-  exports.ContentChildMetadata = di_1.ContentChildMetadata;
-  exports.ViewChildrenMetadata = di_1.ViewChildrenMetadata;
-  exports.ViewQueryMetadata = di_1.ViewQueryMetadata;
-  exports.ViewChildMetadata = di_1.ViewChildMetadata;
-  exports.AttributeMetadata = di_1.AttributeMetadata;
-  var directives_1 = require("angular2/src/core/metadata/directives");
-  exports.ComponentMetadata = directives_1.ComponentMetadata;
-  exports.DirectiveMetadata = directives_1.DirectiveMetadata;
-  exports.PipeMetadata = directives_1.PipeMetadata;
-  exports.InputMetadata = directives_1.InputMetadata;
-  exports.OutputMetadata = directives_1.OutputMetadata;
-  exports.HostBindingMetadata = directives_1.HostBindingMetadata;
-  exports.HostListenerMetadata = directives_1.HostListenerMetadata;
-  var view_1 = require("angular2/src/core/metadata/view");
-  exports.ViewMetadata = view_1.ViewMetadata;
-  exports.ViewEncapsulation = view_1.ViewEncapsulation;
-  var di_2 = require("angular2/src/core/metadata/di");
-  var directives_2 = require("angular2/src/core/metadata/directives");
-  var view_2 = require("angular2/src/core/metadata/view");
-  var decorators_1 = require("angular2/src/core/util/decorators");
-  exports.Component = decorators_1.makeDecorator(directives_2.ComponentMetadata, function(fn) {
-    return fn.View = exports.View;
-  });
-  exports.Directive = decorators_1.makeDecorator(directives_2.DirectiveMetadata);
-  exports.View = decorators_1.makeDecorator(view_2.ViewMetadata, function(fn) {
-    return fn.View = exports.View;
-  });
-  exports.Attribute = decorators_1.makeParamDecorator(di_2.AttributeMetadata);
-  exports.Query = decorators_1.makeParamDecorator(di_2.QueryMetadata);
-  exports.ContentChildren = decorators_1.makePropDecorator(di_2.ContentChildrenMetadata);
-  exports.ContentChild = decorators_1.makePropDecorator(di_2.ContentChildMetadata);
-  exports.ViewChildren = decorators_1.makePropDecorator(di_2.ViewChildrenMetadata);
-  exports.ViewChild = decorators_1.makePropDecorator(di_2.ViewChildMetadata);
-  exports.ViewQuery = decorators_1.makeParamDecorator(di_2.ViewQueryMetadata);
-  exports.Pipe = decorators_1.makeDecorator(directives_2.PipeMetadata);
-  exports.Input = decorators_1.makePropDecorator(directives_2.InputMetadata);
-  exports.Output = decorators_1.makePropDecorator(directives_2.OutputMetadata);
-  exports.HostBinding = decorators_1.makePropDecorator(directives_2.HostBindingMetadata);
-  exports.HostListener = decorators_1.makePropDecorator(directives_2.HostListenerMetadata);
-  global.define = __define;
-  return module.exports;
-});
-
-System.register("angular2/src/platform/dom/events/dom_events", ["angular2/src/platform/dom/dom_adapter", "angular2/core", "angular2/src/platform/dom/events/event_manager"], true, function(require, exports, module) {
-  var global = System.global,
-      __define = global.define;
-  global.define = undefined;
-  var __extends = (this && this.__extends) || function(d, b) {
-    for (var p in b)
-      if (b.hasOwnProperty(p))
-        d[p] = b[p];
-    function __() {
-      this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
-    var c = arguments.length,
-        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-        d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-      r = Reflect.decorate(decorators, target, key, desc);
-    else
-      for (var i = decorators.length - 1; i >= 0; i--)
-        if (d = decorators[i])
-          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-  };
-  var __metadata = (this && this.__metadata) || function(k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-      return Reflect.metadata(k, v);
-  };
-  var dom_adapter_1 = require("angular2/src/platform/dom/dom_adapter");
-  var core_1 = require("angular2/core");
-  var event_manager_1 = require("angular2/src/platform/dom/events/event_manager");
-  var DomEventsPlugin = (function(_super) {
-    __extends(DomEventsPlugin, _super);
-    function DomEventsPlugin() {
-      _super.apply(this, arguments);
-    }
-    DomEventsPlugin.prototype.supports = function(eventName) {
-      return true;
-    };
-    DomEventsPlugin.prototype.addEventListener = function(element, eventName, handler) {
-      var zone = this.manager.getZone();
-      var outsideHandler = function(event) {
-        return zone.run(function() {
-          return handler(event);
-        });
-      };
-      return this.manager.getZone().runOutsideAngular(function() {
-        return dom_adapter_1.DOM.onAndCancel(element, eventName, outsideHandler);
-      });
-    };
-    DomEventsPlugin.prototype.addGlobalEventListener = function(target, eventName, handler) {
-      var element = dom_adapter_1.DOM.getGlobalEventTarget(target);
-      var zone = this.manager.getZone();
-      var outsideHandler = function(event) {
-        return zone.run(function() {
-          return handler(event);
-        });
-      };
-      return this.manager.getZone().runOutsideAngular(function() {
-        return dom_adapter_1.DOM.onAndCancel(element, eventName, outsideHandler);
-      });
-    };
-    DomEventsPlugin = __decorate([core_1.Injectable(), __metadata('design:paramtypes', [])], DomEventsPlugin);
-    return DomEventsPlugin;
-  })(event_manager_1.EventManagerPlugin);
-  exports.DomEventsPlugin = DomEventsPlugin;
   global.define = __define;
   return module.exports;
 });
@@ -20294,6 +20293,7 @@ System.register("angular2/src/common/pipes/async_pipe", ["angular2/src/facade/la
   })();
   var _promiseStrategy = new PromiseStrategy();
   var _observableStrategy = new ObservableStrategy();
+  var __unused;
   var AsyncPipe = (function() {
     function AsyncPipe(_ref) {
       this._latestValue = null;

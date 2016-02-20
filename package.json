@@ -1,6 +1,6 @@
 {
   "name": "ng2-notify",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "Notification component for angular2",
   "main": "ng2-notify.js",
   "scripts": {
@@ -25,7 +25,7 @@
   "author": "Dimas López (aka dimaslz) <dimaslopezzurita@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "angular2": "2.0.0-beta.6",
+    "angular2": "2.0.0-beta.7",
     "app-module-path": "^1.0.5",
     "assert": "^1.3.0",
     "body-parser": "^1.14.2",
@@ -36,11 +36,13 @@
     "mongoose": "^4.4.2",
     "mongoose-unique-validator": "^0.4.1",
     "nunjucks": "^2.3.0",
-    "path": "^0.12.7",
-    "rxjs": "5.0.0-beta.1",
+    "path": "0.12.7",
+    "rxjs": "5.0.0-beta.2",
     "systemjs": "0.19.20",
-    "zone.js": "^0.5.11",
-    "typings": "^0.6.8"
+    "zone.js": "0.5.15",
+    "es6-promise": "3.0.2",
+    "es6-shim": "0.34.4",
+    "typings": "0.6.8"
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.6",
@@ -48,8 +50,6 @@
     "compass-mixins": "^0.12.7",
     "cors": "^2.7.1",
     "del": "^2.2.0",
-    "es6-promise": "3.0.2",
-    "es6-shim": "0.34.4",
     "express": "^4.13.4",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.1",
@@ -65,7 +65,7 @@
     "merge2": "^1.0.1",
     "nunjucks": "^2.3.0",
     "reflect-metadata": "^0.1.3",
-    "typescript": "^1.7.5",
+    "typescript": "1.8.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }

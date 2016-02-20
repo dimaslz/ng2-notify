@@ -1,4 +1,4 @@
-WIP...
+[![npm version](https://badge.fury.io/js/ng2-notify.svg)](https://badge.fury.io/js/ng2-notify)
 
 #ng2-notify
 Notification component for Angular2
@@ -24,7 +24,7 @@ import {Ng2Notify, Ng2NotifyService} from 'ng2-notify/notify';
 	providers: [Ng2NotifyService]
 }
 export class YourClass {
-	constructor(private notifyService) {
+	constructor(private notifyService, Ng2NotifyService) {
 		// optional
 		this.notifyService.config({
             corner: 'right-bottom', 
@@ -38,6 +38,8 @@ export class YourClass {
 	  });
 	}
 }
+
+Note: You can show a demo in **app/examples/app.ts**
 ```
 ###Notification corners
 * left-top
