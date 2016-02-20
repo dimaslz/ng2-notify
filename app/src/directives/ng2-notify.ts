@@ -1,4 +1,4 @@
-///<reference path="../../../node_modules/angular2/typings/browser.d.ts"/>
+///<reference path="../../../typings/browser.d.ts"/>
 import {bootstrap} from "angular2/platform/browser";
 import {Component, View, Input} from "angular2/core";
 import {Ng2NotifyService} from "../services/ng2-notify";
