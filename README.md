@@ -24,7 +24,7 @@ import {Ng2Notify, Ng2NotifyService} from 'ng2-notify/notify';
 	providers: [Ng2NotifyService]
 }
 export class YourClass {
-	constructor(private notifyService, Ng2NotifyService) {
+	constructor(private notifyService: Ng2NotifyService) {
 		// optional
 		this.notifyService.config({
             corner: 'right-bottom', 
