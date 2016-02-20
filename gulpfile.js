@@ -31,12 +31,9 @@ function startBrowserSync() {
 }
 
 gulp.task('sass', function() {
-    gulp.src('./app/src/directives/ng2-notify.scss')
+    gulp.src('./app/src/directives/ng2notify.scss')
 		.pipe(sass().on('error', sass.logError))
-        .pipe(minifyCss({compatibility: 'ie8'}))
-		.pipe(gulp.dest('./dist/css'));
-        
-    gulp.src('./app/src/directives/ng2-notify.scss')
+    .pipe(minifyCss({compatibility: 'ie8'}))
 		.pipe(gulp.dest('./dist/css'));
         
 	return gulp.src('./app/sass/main.scss')

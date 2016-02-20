@@ -41,6 +41,10 @@ export class YourClass {
 
 Note: You can show a demo in **app/examples/app.ts**
 ```
+
+###CSS
+For css style, import this css into your html `node_modules/ng2-notify/dist/css/ng2notify.css`
+
 ###Notification corners
 * left-top
 * right-top
