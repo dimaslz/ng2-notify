@@ -1,6 +1,6 @@
 {
   "name": "ng2-notify",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Notification component for angular2",
   "main": "ng2-notify.js",
   "scripts": {
@@ -9,11 +9,18 @@
     "start": "bin/server",
     "typings" : "typings"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimaslz/ng2-notify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dimaslz/ng2-notify/issues"
+  },
+  "homepage": "https://github.com/dimaslz/ng2-notify#readme",
   "keywords": [
-    "node",
-    "api",
-    "express",
-    "mongoose"
+    "angular2",
+    "notification",
+    "library"
   ],
   "author": "Dimas López (aka dimaslz) <dimaslopezzurita@gmail.com>",
   "license": "MIT",
