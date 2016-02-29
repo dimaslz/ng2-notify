@@ -14,7 +14,15 @@ var ghPages = require('gulp-gh-pages');
 var del = require('del');
 var minifyCss = require('gulp-minify-css');
 
-var tsProject = ts.createProject('./app/src/tsconfig.json');
+var KarmaServer = require('karma').Server;
+var remapIstanbul = require('remap-istanbul/lib/gulpRemapIstanbul');
+var exec = require('child_process').exec;
+var gp = require('gulp-protractor');
+var protractor = gp.protractor;
+var join = require('path').join;
+var concat = require('gulp-concat');
+
+var tsProject = ts.createProject('./src/app/tsconfig.json');
 
 function startBrowserSync() {
     browserSync({
@@ -31,12 +39,12 @@ function startBrowserSync() {
 }
 
 gulp.task('sass', function() {
-    gulp.src('./app/src/directives/ng2notify.scss')
+    gulp.src('./src/app/directives/ng2notify.scss')
 		.pipe(sass().on('error', sass.logError))
     .pipe(minifyCss({compatibility: 'ie8'}))
 		.pipe(gulp.dest('./dist/css'));
-        
-	return gulp.src('./app/sass/main.scss')
+
+	return gulp.src('./src/sass/main.scss')
 		.pipe(sourcemaps.init())
 		.pipe(sass().on('error', sass.logError))
 		.pipe(sourcemaps.write())
@@ -48,7 +56,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('sass-component', function() {
-	return gulp.src('./app/src/directives/ng2-notify.scss')
+	return gulp.src('./src/app/directives/ng2-notify.scss')
 		// .pipe(sourcemaps.init())
 		.pipe(sass().on('error', sass.logError))
 		// .pipe(sourcemaps.write())
@@ -56,7 +64,7 @@ gulp.task('sass-component', function() {
 });
 
 gulp.task('index', function() {
-    return gulp.src('./app/examples/index.html')
+    return gulp.src('./src/examples/index.html')
         .pipe(gulp.dest('./public'))
         .pipe(
             browserSync.reload({
@@ -65,17 +73,17 @@ gulp.task('index', function() {
 });
 
 gulp.task('templates', function () {
-    return gulp.src('./app/examples/**/*.tpl.html')
+    return gulp.src('./src/examples/**/*.tpl.html')
         .pipe(gulp.dest('./public'))
 })
 
 gulp.task('assets', function () {
-    return gulp.src('./app/examples/assets/**/*')
+    return gulp.src('./src/examples/assets/**/*')
         .pipe(gulp.dest('./public/assets'))
 })
 
 gulp.task('compile-ts', function() {
-  var tsResult = gulp.src(['app/**/*.ts'])
+  var tsResult = gulp.src(['src/**/*.ts'])
                   .pipe(plumber())
                   .pipe(sourcemaps.init())
                   .pipe(ts(tsProject));
@@ -83,12 +91,14 @@ gulp.task('compile-ts', function() {
   return merge([ // Merge the two output streams, so this task is finished when the IO of both operations are done.
       tsResult.dts.pipe(gulp.dest('public')),
       tsResult.js
-        .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write('./', {
+					sourceRoot: __dirname + '/src'
+				}))
         .pipe(gulp.dest('public'))
   ]);
 });
 
-gulp.task('github-page', function() {    
+gulp.task('github-page', function() {
   return gulp.src('./public/**/*')
     .pipe(ghPages());
 });
@@ -113,10 +123,22 @@ gulp.task('copy-external-modules', function() {
         .pipe(gulp.dest('public/lib'))
 });
 
+gulp.task('test:unit', function (done) {
+	new KarmaServer({
+		configFile: __dirname + '/karma.conf.js',
+		autoWatch: true,
+    singleRun: false
+	}).start();
+});
+
+gulp.task('remap-coverage', ['test:unit'], function() {
+	return exec('node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -o coverage -t html');
+});
+
 gulp.task('watch', ['copy-external-modules', 'compile-ts', 'templates', 'sass', 'assets', 'index'], function() {
     startBrowserSync();
-    gulp.watch('./app/**/index.html', ['index']);
-    gulp.watch('./app/**/*.tpl.html', ['templates']).on('change', browserSync.reload);
-    gulp.watch('./app/**/*.ts', ['compile-ts']).on('change', browserSync.reload);
-    gulp.watch('./app/**/*.scss', ['sass']);
+    gulp.watch('./src/**/index.html', ['index']);
+    gulp.watch('./src/**/*.tpl.html', ['templates']).on('change', browserSync.reload);
+    gulp.watch('./src/**/*.ts', ['compile-ts', 'remap-coverage']).on('change', browserSync.reload);
+    gulp.watch('./src/**/*.scss', ['sass']);
 });

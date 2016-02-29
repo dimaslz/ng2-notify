@@ -1,4 +1,8 @@
 [![npm version](https://badge.fury.io/js/ng2-notify.svg)](https://badge.fury.io/js/ng2-notify)
+[![dependency Status](https://david-dm.org/dimaslz/ng2-notify/status.svg)](https://david-dm.org/dimaslz/ng2-notify/status.svg)
+[![devDependency Status](https://david-dm.org/dimaslz/ng2-notify/dev-status.svg)](https://david-dm.org/dimaslz/ng2-notify/dev-status.svg)
+[![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://img.shields.io/badge/license-MIT-brightgreen.svg)
+[![npm](https://img.shields.io/npm/dm/ng2-notify.svg)]()
 
 #ng2-notify
 Notification component for Angular2
