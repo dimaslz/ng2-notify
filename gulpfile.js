@@ -123,6 +123,20 @@ gulp.task('copy-external-modules', function() {
         .pipe(gulp.dest('public/lib'))
 });
 
+gulp.task('test:e2e', function() {
+  // startBrowserSync();
+  var args = ['--baseUrl', 'http://127.0.0.1:3000'];
+  return gulp.src(["./src/**/*.e2e.ts"])
+    .pipe(protractor({
+      configFile: "protractor.conf.js",
+      action: 'run',
+      args: args
+    })
+    ).on('end', function(c) {
+      process.exit();
+    });
+});
+
 gulp.task('test:unit', function (done) {
 	new KarmaServer({
 		configFile: __dirname + '/karma.conf.js',
@@ -133,6 +147,14 @@ gulp.task('test:unit', function (done) {
 
 gulp.task('remap-coverage', ['test:unit'], function() {
 	return exec('node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -o coverage -t html');
+});
+
+gulp.task('watch:test', ['copy-external-modules', 'compile-ts', 'templates', 'sass', 'assets', 'index'], function() {
+    startBrowserSync();
+    gulp.watch('./src/**/index.html', ['index', 'test:e2e']);
+    gulp.watch('./src/**/*.tpl.html', ['templates', 'test:e2e']).on('change', browserSync.reload);
+    gulp.watch('./src/**/*.ts', ['compile-ts', 'remap-coverage', 'test:e2e']).on('change', browserSync.reload);
+    gulp.watch('./src/**/*.scss', ['sass', 'test:e2e']);
 });
 
 gulp.task('watch', ['copy-external-modules', 'compile-ts', 'templates', 'sass', 'assets', 'index'], function() {

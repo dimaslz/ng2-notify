@@ -16,7 +16,6 @@ import {Ng2NotifyService} from '../services/ng2-notify';
 describe('Ng2Notify', () => {
 	let notifyDirective: Ng2Notify;
 	let notifyService: Ng2NotifyService = new Ng2NotifyService();
-	let timerCallback;
 	let originalTimeout;
 
 	beforeEach(() => {

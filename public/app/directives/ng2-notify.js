@@ -38,8 +38,7 @@ var Ng2Notify = (function () {
     Ng2Notify = __decorate([
         core_1.Component({
             selector: 'ng2-notify',
-            bindings: [ng2_notify_1.Ng2NotifyService],
-            template: "\n\t\t<ul class=\"{{corner}}\">\n\t\t\t<li *ngFor=\"#notification of notifications\" class=\"{{notification.type || 'default' }}\" [ngClass]=\"{'animate': notification.notify}\" (mouseenter)=\"clear()\" (click)=\"notification.notify = !notification.notify\">\n\t\t\t\t\t\t{{ notification.message }}\n\t\t\t\t</li>\n\t\t</ul>\n\t",
+            template: "\n\t\t<ul class=\"{{corner}}\">\n\t\t\t<li *ngFor=\"#notification of notifications\" class=\"{{notification.type || 'default' }}\" [ngClass]=\"{'animate': notification.notify}\">\n\t\t\t\t\t\t{{ notification.message }}\n\t\t\t\t</li>\n\t\t</ul>\n\t",
         }), 
         __metadata('design:paramtypes', [ng2_notify_1.Ng2NotifyService])
     ], Ng2Notify);

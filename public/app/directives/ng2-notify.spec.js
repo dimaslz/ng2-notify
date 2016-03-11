@@ -4,7 +4,6 @@ var ng2_notify_2 = require('../services/ng2-notify');
 testing_1.describe('Ng2Notify', function () {
     var notifyDirective;
     var notifyService = new ng2_notify_2.Ng2NotifyService();
-    var timerCallback;
     var originalTimeout;
     testing_1.beforeEach(function () {
         notifyDirective = new ng2_notify_1.Ng2Notify(notifyService);
