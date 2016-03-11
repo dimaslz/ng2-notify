@@ -1,4 +1,6 @@
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/map';
 export declare class Ng2NotifyService {
     notify: Observable<Object>;
     notifyObserver: any;

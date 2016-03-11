@@ -3,7 +3,7 @@ import {Component, View, OnInit} from 'angular2/core';
 import {Ng2Notify, Ng2NotifyService} from '../app/notify';
 
 @Component({
-	selector: 'app',
+	selector: 'app, div[app]',
 	templateUrl: './app.tpl.html',
 	directives: [Ng2Notify],
 	providers: [Ng2NotifyService]

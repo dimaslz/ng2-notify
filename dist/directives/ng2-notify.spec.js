@@ -1,4 +1,4 @@
-"use strict";
+/// <reference path="../../../typings/browser.d.ts" />
 var testing_1 = require('angular2/testing');
 var ng2_notify_1 = require('./ng2-notify');
 var ng2_notify_2 = require('../services/ng2-notify');
@@ -73,5 +73,4 @@ testing_1.describe('Ng2Notify', function () {
         done();
     });
 });
-
 //# sourceMappingURL=ng2-notify.spec.js.map

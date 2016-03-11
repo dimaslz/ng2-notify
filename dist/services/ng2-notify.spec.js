@@ -1,4 +1,4 @@
-"use strict";
+/// <reference path="../../../typings/browser.d.ts" />
 var testing_1 = require('angular2/testing');
 var ng2_notify_1 = require('../services/ng2-notify');
 var Observable_1 = require('rxjs/Observable');
@@ -66,5 +66,4 @@ testing_1.describe('Ng2NotifyService', function () {
         testing_1.expect(console.error).toHaveBeenCalledWith('ng2NotifyError: ', 'The corner "wrong-corner" do not exist');
     });
 });
-
 //# sourceMappingURL=ng2-notify.spec.js.map

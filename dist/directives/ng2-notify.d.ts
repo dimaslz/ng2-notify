@@ -1,11 +1,10 @@
 /// <reference path="../../typings/browser.d.ts" />
-import { Ng2NotifyService } from "../services/ng2-notify";
+import { Ng2NotifyService } from '../services/ng2-notify';
 export declare class Ng2Notify {
-    notification: Ng2NotifyService;
-    private notifications;
-    corner: any;
-    constructor(notification: Ng2NotifyService);
-    private clear(obj);
-    private createTimeout(notification);
-    private setNotify(obj);
+    notifyService: Ng2NotifyService;
+    notifications: any;
+    corner: string;
+    constructor(notifyService: Ng2NotifyService);
+    createTimeout(notification: any): void;
+    setNotify(obj: any): void;
 }

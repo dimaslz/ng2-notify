@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -50,7 +51,7 @@ var App = (function () {
     };
     App = __decorate([
         core_1.Component({
-            selector: 'app',
+            selector: 'app, div[app]',
             templateUrl: './app.tpl.html',
             directives: [notify_1.Ng2Notify],
             providers: [notify_1.Ng2NotifyService]
@@ -58,7 +59,7 @@ var App = (function () {
         __metadata('design:paramtypes', [notify_1.Ng2NotifyService])
     ], App);
     return App;
-})();
+}());
 browser_1.bootstrap(App, []).catch(console.error);
 
 //# sourceMappingURL=app.js.map

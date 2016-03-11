@@ -9,7 +9,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("angular2/core");
+var core_1 = require('angular2/core');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/share');
 require('rxjs/add/operator/map');
@@ -28,16 +28,15 @@ var Ng2NotifyService = (function () {
             return false;
         }
         if (config.delay && !Number(config.delay)) {
-            console.error('ng2NotifyError: ', "The detaly \"" + config.delay + "\" must be a number");
+            console.error('ng2NotifyError: ', "The delay \"" + config.delay + "\" must be a number");
             return false;
         }
-        var object = {
+        this.notifyObserver.next({
             type: type,
             message: config.message,
             corner: config.corner ? config.corner : this.corner,
             delay: config.delay ? config.delay : this.delay
-        };
-        this.notifyObserver.next(object);
+        });
     };
     Ng2NotifyService.prototype.config = function (config) {
         if (this.positionTypes.indexOf(config.corner) === -1) {
