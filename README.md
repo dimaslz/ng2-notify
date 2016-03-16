@@ -9,6 +9,7 @@ Notification component for Angular2
 
 ###Demo
 [http://dimaslz.github.io/ng2-notify](http://dimaslz.github.io/ng2-notify)
+Also, you can show a implementation into Angular2: [http://todoapp.dimaslz.io/#/tasks/all](http://todoapp.dimaslz.io/#/tasks/all) (github: [https://github.com/dimaslz/todoApp-angular2](https://github.com/dimaslz/todoApp-angular2))
 
 ###Install
 dependencies: `npm install`
@@ -43,8 +44,10 @@ export class YourClass {
 	}
 }
 
-Note: You can show a demo in **app/examples/app.ts**
+Note: You can show a demo in **src/examples/app.ts**
 ```
+
+Now, in your template, should add `<ng2-notify></ng2-notify>` is a tag for print directive in the UI.
 
 ###CSS
 For css style, import this css into your html `node_modules/ng2-notify/dist/css/ng2notify.css`
@@ -69,9 +72,8 @@ For css style, import this css into your html `node_modules/ng2-notify/dist/css/
 'error'
 
 ###TODO
-* Add unit tests
-* Add e2e test
-* Type control
+* ~~Add unit tests~~ √
+* ~~Add e2e test~~ √
 * More animations
 * Let me know!
 
