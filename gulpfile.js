@@ -111,7 +111,7 @@ gulp.task('copy-dist', function() {
 gulp.task('copy-external-modules', function() {
     del.sync(['public/**']);
     return gulp.src([
-        'node_modules/angular2/bundles/angular2-polyfills.js',
+        'node_modules/angular2/bundles/angular2-polyfills.min.js',
         'node_modules/es6-shim/es6-shim.min.js',
         'node_modules/systemjs/dist/system.src.js',
         'node_modules/systemjs/dist/system.js',

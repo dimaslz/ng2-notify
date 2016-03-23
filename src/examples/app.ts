@@ -1,5 +1,5 @@
 import {bootstrap} from 'angular2/platform/browser';
-import {Component, View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Ng2Notify, Ng2NotifyService} from '../app/notify';
 
 @Component({

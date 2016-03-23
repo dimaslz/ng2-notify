@@ -54,7 +54,7 @@ describe('Ng2NotifyService', () => {
 		});
 
 		expect(show).toBeFalsy;
-		expect(console.error).toHaveBeenCalledWith('ng2NotifyError: ', 'The delay "seconds" must be a number');
+		expect(console.error).toHaveBeenCalledWith('ng2NotifyError: ', `The delay "seconds" must be a number`);
 	});
 
 	it('set notification config. Add default vars', function() {

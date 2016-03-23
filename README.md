@@ -11,10 +11,15 @@ Notification component for Angular2
 [http://dimaslz.github.io/ng2-notify](http://dimaslz.github.io/ng2-notify)
 Also, you can show a implementation into Angular2: [http://todoapp.dimaslz.io/#/tasks/all](http://todoapp.dimaslz.io/#/tasks/all) (github: [https://github.com/dimaslz/todoApp-angular2](https://github.com/dimaslz/todoApp-angular2))
 
+###Note
+Updated to Angular2 Beta 11.
+Log error `Uncaught TypeError: Cannot read property 'zone' of undefined`
+Pending to solve in Beta 12.
+
 ###Install
 dependencies: `npm install`
 
-watch and enjoi: `gulp watch`
+watch and enjoy: `gulp watch`
 
 ###Use in your project
 `npm install --save ng2-notify`
@@ -32,11 +37,11 @@ export class YourClass {
 	constructor(private notifyService: Ng2NotifyService) {
 		// optional
 		this.notifyService.config({
-            corner: 'right-bottom', 
+            corner: 'right-bottom',
             delay: 5000 // milisecons
         });
 	}
-	
+
 	private myClickExample(message:string) {
 	  this.notifyService.show('default', {
 	  	message: 'Type your message here!'
@@ -47,7 +52,7 @@ export class YourClass {
 Note: You can show a demo in **src/examples/app.ts**
 ```
 
-Now, in your template, should add `<ng2-notify></ng2-notify>` is a tag for print directive in the UI.
+Now, in your template, you should add `<ng2-notify></ng2-notify>`, is the tag for print directive in the UI.
 
 ###CSS
 For css style, import this css into your html `node_modules/ng2-notify/dist/css/ng2notify.css`
@@ -78,7 +83,7 @@ For css style, import this css into your html `node_modules/ng2-notify/dist/css/
 * Let me know!
 
 ###Author
-Dimas López ([dimaslz](http://twitter.com/dimaslz)) · Software developer  
+Dimas López ([dimaslz](http://twitter.com/dimaslz)) · Software developer
 [http://dimaslz.io](http://dimaslz.io) · [http://dimaslz.com](http://dimaslz.com)
 
 ## License

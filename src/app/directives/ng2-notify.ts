@@ -1,6 +1,6 @@
 ///<reference path="../../../typings/browser.d.ts"/>
 import {bootstrap} from 'angular2/platform/browser';
-import {Component, View, Input} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {Ng2NotifyService} from '../services/ng2-notify';
 
 @Component({
@@ -8,8 +8,8 @@ import {Ng2NotifyService} from '../services/ng2-notify';
 	template: `
 		<ul class="{{corner}}">
 			<li *ngFor="#notification of notifications" class="{{notification.type || 'default' }}" [ngClass]="{'animate': notification.notify}">
-						{{ notification.message }}
-				</li>
+				{{ notification.message }}
+			</li>
 		</ul>
 	`,
 })
