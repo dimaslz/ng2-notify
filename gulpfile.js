@@ -161,6 +161,6 @@ gulp.task('watch', ['copy-external-modules', 'compile-ts', 'templates', 'sass', 
     startBrowserSync();
     gulp.watch('./src/**/index.html', ['index']);
     gulp.watch('./src/**/*.tpl.html', ['templates']).on('change', browserSync.reload);
-    gulp.watch('./src/**/*.ts', ['compile-ts', 'remap-coverage']).on('change', browserSync.reload);
+    gulp.watch('./src/**/*.ts', ['compile-ts']).on('change', browserSync.reload);
     gulp.watch('./src/**/*.scss', ['sass']);
 });

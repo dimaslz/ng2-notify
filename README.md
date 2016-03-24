@@ -11,15 +11,11 @@ Notification component for Angular2
 [http://dimaslz.github.io/ng2-notify](http://dimaslz.github.io/ng2-notify)
 Also, you can show a implementation into Angular2: [http://todoapp.dimaslz.io/#/tasks/all](http://todoapp.dimaslz.io/#/tasks/all) (github: [https://github.com/dimaslz/todoApp-angular2](https://github.com/dimaslz/todoApp-angular2))
 
-###Note
-Updated to Angular2 Beta 11.
-Log error `Uncaught TypeError: Cannot read property 'zone' of undefined`
-Pending to solve in Beta 12.
-
 ###Install
 dependencies: `npm install`
 
 watch and enjoy: `gulp watch`
+watch with tests (unit & e2e): `gulp watch:test`
 
 ###Use in your project
 `npm install --save ng2-notify`
